@@ -29,33 +29,25 @@ function getRandomFromPallete () {
 	return PALLETE[rando2];
 }
 
-function littleCircle(color) {
-	push();
-		translate(width/2, height/2);
-		stroke(color);
-		const circleSize = random(CRYSTAL_SIZE - 1);
-		ellipse(0, 0, circleSize, circleSize);
-	pop();
+function testLines () {
+  let numShapes = randomSelectTwo() ? SIDES : SIDES * 2
+  const strokeColor = getRandomFromPallete();
+
+  noFill()
+  stroke(PALLETE [0])
+  strokeWeight(1)
+  push()
+    translate(width/2, height/2)
+    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
+    stroke(strokeColor)
+    const angle = 360 / numShapes
+    for (let i = 0; i < numShapes; i++) {
+      line(0, 0, 0, CRYSTAL_SIZE / 2)
+      rotate(angle)
+    }
+  pop()
 }
 
-function littleRectangle(color) {
-	push();
-		translate(width/2, height/2);
-		stroke(color);
-		const rectSize = random(CRYSTAL_SIZE - 1);
-		rect(0, 0, rectSize, rectSize);
-	pop();
-}
-
-function littleHexagon(color) {
-	const strokeColor = color;
-	const weight = randomSelectTwo() ? 1 : 3;
-	const hexSize = random(CRYSTAL_SIZE - 1);
-	stroke(strokeColor);
-	strokeWeight(weight);
-
-	push();
-		translate(width/2, height/2);
-		hexagon(0,0, hexSize);
-	pop();
+function randomToSize() {
+  return floor(random(0, CRYSTAL_SIZE))
 }
